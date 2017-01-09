@@ -53,12 +53,13 @@ func availableSymbols(f []string) []rune {
 }
 
 func excludeElements(s []rune, e []rune) []rune {
-	for i, v := range s {
-		if containsr(e, v) {
-			s = s[:i+copy(s[i:], s[i+1:])]
+	var r []rune
+	for _, v := range s {
+		if !containsr(e, v) {
+			r = append(r, v)
 		}
 	}
-	return s
+	return r
 }
 
 func contains(s []string, e string) bool {
@@ -77,4 +78,14 @@ func containsr(s []rune, e rune) bool {
 		}
 	}
 	return false
+}
+
+func delete(e rune, s []rune) []rune {
+	for i, v := range s {
+		if e == v {
+			s = append(s[:i], s[i+1:]...)
+			return s
+		}
+	}
+	return s
 }
