@@ -1,4 +1,4 @@
-package passgen
+package generator
 
 import (
 	"math/rand"
